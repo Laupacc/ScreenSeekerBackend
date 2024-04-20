@@ -15,6 +15,15 @@ router.get('/movies', (req, res) => {
 
 });
 
+router.get('/tv', (req, res) => {
+    fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${OWM_API_KEY}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            res.json({ tv: data.results });
+        })
+});
+
 
 
 

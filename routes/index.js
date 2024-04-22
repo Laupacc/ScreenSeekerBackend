@@ -6,7 +6,7 @@ const OWM_API_KEY = process.env.OWM_API_KEY;
 
 // get movies
 router.get('/movies', (req, res) => {
-    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${OWM_API_KEY}?page=3`)
+    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${OWM_API_KEY}`)
         .then(response => response.json())
         .then(data => {
             console.log(data);

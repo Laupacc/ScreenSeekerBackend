@@ -45,6 +45,16 @@ router.get('/topratedmovies', (req, res) => {
         })
 });
 
+// get top rated tv shows
+router.get('/topratedtv', (req, res) => {
+    fetch(`https://api.themoviedb.org/3/tv/top_rated?api_key=${OWM_API_KEY}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            res.json({ topratedtv: data.results });
+        })
+});
+
 
 
 module.exports = router;

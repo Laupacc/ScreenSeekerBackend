@@ -16,48 +16,44 @@ router.get('/movies', async (req, res) => {
 });
 
 // get tv shows
-router.get('/tv', (req, res) => {
+router.get('/tv', async (req, res) => {
     let tv = [];
     for (let i = 1; i <= 5; i++) {
-        fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${OWM_API_KEY}&page=${i}`)
-            .then(response => response.json())
-            .then(data => {
-                tv = tv.concat(data.results);
-                if (i === 5) {
-                    res.json({ tv });
-                }
-            });
+        const response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${OWM_API_KEY}&page=${i}`)
+        const data = await response.json();
+        tv = tv.concat(data.results);
     }
+    res.json({ tv });
 });
 
+
 // get genres
-router.get('/genres', (req, res) => {
-    fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${OWM_API_KEY}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            res.json({ genres: data.genres });
-        })
+router.get('/genres', async (req, res) => {
+    const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${OWM_API_KEY}`)
+    const data = await response.json();
+    res.json({ genres: data.genres });
 });
 
 // get top rated movies
-router.get('/topratedmovies', (req, res) => {
-    fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${OWM_API_KEY}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            res.json({ topratedmovies: data.results });
-        })
+router.get('/topratedmovies', async (req, res) => {
+    let topratedmovies = [];
+    for (let i = 1; i <= 5; i++) {
+        const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${OWM_API_KEY}&page=${i}`);
+        const data = await response.json();
+        topratedmovies = topratedmovies.concat(data.results);
+    }
+    res.json({ topratedmovies });
 });
 
 // get top rated tv shows
-router.get('/topratedtv', (req, res) => {
-    fetch(`https://api.themoviedb.org/3/tv/top_rated?api_key=${OWM_API_KEY}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            res.json({ topratedtv: data.results });
-        })
+router.get('/topratedtv', async (req, res) => {
+    let topratedtv = [];
+    for (let i = 1; i <= 5; i++) {
+        const response = await fetch(`https://api.themoviedb.org/3/tv/top_rated?api_key=${OWM_API_KEY}&page=${i}`);
+        const data = await response.json();
+        topratedtv = topratedtv.concat(data.results);
+    }
+    res.json({ topratedtv });
 });
 
 

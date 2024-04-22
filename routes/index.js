@@ -17,12 +17,17 @@ router.get('/movies', async (req, res) => {
 
 // get tv shows
 router.get('/tv', (req, res) => {
-    fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${OWM_API_KEY}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            res.json({ tv: data.results });
-        })
+    let tv = [];
+    for (let i = 1; i <= 5; i++) {
+        fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${OWM_API_KEY}&page=${i}`)
+            .then(response => response.json())
+            .then(data => {
+                tv = tv.concat(data.results);
+                if (i === 5) {
+                    res.json({ tv });
+                }
+            });
+    }
 });
 
 // get genres

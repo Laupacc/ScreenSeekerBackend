@@ -26,7 +26,6 @@ router.get('/tv', async (req, res) => {
     res.json({ tv });
 });
 
-
 // get genres
 router.get('/genres', async (req, res) => {
     const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${OWM_API_KEY}`)

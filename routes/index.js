@@ -8,7 +8,7 @@ const OWM_API_KEY = process.env.OWM_API_KEY;
 router.get('/movies', async (req, res) => {
     let movies = [];
     for (let i = 1; i <= 5; i++) {
-        const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${OWM_API_KEY}&page=${i}`);
+        const response = await fetch(`https://api.themoviedb.org/3/discover/movie?language=en-US?api_key=${OWM_API_KEY}&page=${i}`);
         const data = await response.json();
         movies = movies.concat(data.results);
     }
@@ -19,7 +19,7 @@ router.get('/movies', async (req, res) => {
 router.get('/tv', async (req, res) => {
     let tv = [];
     for (let i = 1; i <= 5; i++) {
-        const response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${OWM_API_KEY}&page=${i}`)
+        const response = await fetch(`https://api.themoviedb.org/3/discover/tv?language=en-US?api_key=${OWM_API_KEY}&page=${i}`)
         const data = await response.json();
         tv = tv.concat(data.results);
     }
@@ -37,18 +37,19 @@ router.get('/genres', async (req, res) => {
 router.get('/topratedmovies', async (req, res) => {
     let topratedmovies = [];
     for (let i = 1; i <= 5; i++) {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${OWM_API_KEY}&page=${i}`);
+        const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?language=en-US?api_key=${OWM_API_KEY}&page=${i}`);
         const data = await response.json();
         topratedmovies = topratedmovies.concat(data.results);
     }
     res.json({ topratedmovies });
 });
 
+
 // get top rated tv shows
 router.get('/topratedtv', async (req, res) => {
     let topratedtv = [];
     for (let i = 1; i <= 5; i++) {
-        const response = await fetch(`https://api.themoviedb.org/3/tv/top_rated?api_key=${OWM_API_KEY}&page=${i}`);
+        const response = await fetch(`https://api.themoviedb.org/3/tv/top_rated?language=en-US?api_key=${OWM_API_KEY}&page=${i}`);
         const data = await response.json();
         topratedtv = topratedtv.concat(data.results);
     }

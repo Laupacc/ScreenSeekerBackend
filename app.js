@@ -13,7 +13,7 @@ var app = express();
 
 const cors = require('cors');
 app.use(cors({
-    origin: 'https://my-movies-frontend-six.vercel.app'
+    origin: 'https://my-movies-frontend-six.vercel.app', 'allowedHeaders': ['Content-Type'],
 }));
 
 app.use(logger('dev'));

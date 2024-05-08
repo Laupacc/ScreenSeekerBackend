@@ -12,11 +12,7 @@ const usersRouter = require('./routes/users');
 const app = express();
 
 const cors = require('cors');
-const allowedOrigins = ['http://localhost:3001', 'https://my-movies-frontend-six.vercel.app/movies', 'http://localhost:3000'];
-app.use(cors({
-    origin: allowedOrigins
-}));
-
+app.use(cors());
 
 app.use(logger('dev'));
 app.use(express.json());

@@ -8,12 +8,23 @@ const MOVIES_API_KEY = process.env.MOVIES_API_KEY;
 router.get('/movies', async (req, res) => {
     let movies = [];
     for (let i = 1; i <= 5; i++) {
-        const response = await fetch(`https://api.themoviedb.org/3/discover/movie?language=en-US?api_key=${MOVIES_API_KEY}&page=${i}`);
+        const response = await fetch(`https://api.themoviedb.org/3/discover/movie?language=en-US&api_key=${MOVIES_API_KEY}&page=${i}`);
+        
+        // Log the response status
+        console.log(`Response status for page ${i}:`, response.status);
+
+        // Parse response JSON
         const data = await response.json();
+
+        // Log the data received
+        console.log(`Data received for page ${i}:`, data);
+
+        // Concatenate movies array
         movies = movies.concat(data.results);
     }
     res.json({ movies });
 });
+
 
 // get tv shows
 router.get('/tv', async (req, res) => {

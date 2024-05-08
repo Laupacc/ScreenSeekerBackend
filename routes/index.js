@@ -5,15 +5,25 @@ const fetch = require('node-fetch');
 const MOVIES_API_KEY = process.env.MOVIES_API_KEY;
 
 // get movies
+// router.get('/movies', async (req, res) => {
+//     let movies = [];
+//     for (let i = 1; i <= 5; i++) {
+//         const response = await fetch(`https://api.themoviedb.org/3/discover/movie?language=en-US?api_key=${MOVIES_API_KEY}&page=${i}`);
+//         const data = await response.json();
+//         movies = movies.concat(data.results);
+//     }
+//     res.json({ movies });
+// });
+
 router.get('/movies', async (req, res) => {
-    let movies = [];
-    for (let i = 1; i <= 5; i++) {
-        const response = await fetch(`https://api.themoviedb.org/3/discover/movie?language=en-US?api_key=${MOVIES_API_KEY}&page=${i}`);
-        const data = await response.json();
-        movies = movies.concat(data.results);
-    }
-    res.json({ movies });
+
+    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?language=en-US?api_key=${MOVIES_API_KEY}`);
+    const data = await response.json();
+    res.json({ movies: data.movies });
+
 });
+
+
 
 // get tv shows
 router.get('/tv', async (req, res) => {

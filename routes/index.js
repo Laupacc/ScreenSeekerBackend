@@ -29,9 +29,16 @@ router.get('/tv', async (req, res) => {
     res.json({ tv });
 });
 
-// get genres
-router.get('/genres', async (req, res) => {
+// get movie genres
+router.get('/genresmovie', async (req, res) => {
     const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${MOVIES_API_KEY}`)
+    const data = await response.json();
+    res.json({ genres: data.genres });
+});
+
+// get tv genres
+router.get('/genrestv', async (req, res) => {
+    const response = await fetch(`https://api.themoviedb.org/3/genre/tv/list?api_key=${MOVIES_API_KEY}`)
     const data = await response.json();
     res.json({ genres: data.genres });
 });

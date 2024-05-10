@@ -12,7 +12,6 @@ const usersRouter = require('./routes/users');
 const app = express();
 
 const cors = require('cors');
-// app.use(cors());
 
 const corsOptions = {
     origin: function (origin, callback) {
@@ -20,9 +19,7 @@ const corsOptions = {
         const allowedOrigins = [
             "http://localhost:3000",
             "http://localhost:3001",
-            "https://my-movies-frontend-six.vercel.app",
-            "https://my-movies-frontend-1e0sv0xsr-lauras-projects-ba7cc8a8.vercel.app",
-
+            "https://screenseeker.vercel.app",
         ];
         if (allowedOrigins.includes(origin) || !origin) {
             callback(null, true);
